@@ -11,7 +11,8 @@ body {
   min-height: 100vh;
 }
 header {
-  font-size: 2rem;
+  font-size: 1.5rem;
+  margin-left: 20px;
 }
 
 header,
@@ -20,6 +21,7 @@ header,
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-right: 20px;
 }
 
 .add-container input {
@@ -56,16 +58,34 @@ header,
   min-width: 250px;
   list-style: none;
   margin-left: 20px;
+  margin-right: 20px;
 }
 
 li {
   margin-bottom: 20px;
 }
+.btn {
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: 400;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid transparent;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  border-radius: 4px;
+}
 .delete-btn {
   float: right;
   color: #fff;
-  background-color: #dc3545;
-  border-color: #dc3545;
+  background-color: #d9534f;
+  border-color: #d43f3a;
 }
 .trash-btn,
 .complete-btn {

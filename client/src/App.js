@@ -29,7 +29,12 @@ function App() {
     const newItem = await APIHelper.createItem(item)
     setItems([...items, newItem])
   }
-
+  const handleKeyPress = async e =>{
+    if (e.key === "Enter"){
+      const newItem = await APIHelper.createItem(item)
+      setItems([...items, newItem])
+    }
+  }
   const deleteItem = async (e, id) => {
     try {
       e.stopPropagation()
@@ -54,10 +59,12 @@ function App() {
       </header>
       <div className="add-container">
         <input
+          placeholder="Insert your item"
           id="item-input"
           type="text"
           value={item}
           onChange={({ target }) => setItem(target.value)}
+          onKeyPress={handleKeyPress}
         />
         <button type="button" className="addItem-button" onClick={createItem}>
           Add
