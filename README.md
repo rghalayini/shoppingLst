@@ -12,6 +12,14 @@ Frontend project: This is a React app that fetches the API, displays the items a
 ## Notes for upgrades
 
 This app will be upgraded in the future to allow for more functionalities.
+Example of upgrades are:
+
+- erase input after clicking on add
+
+## Start app
+
+- start first the server by typing npm start in the terminal. It will open in port 3001.
+- Navigate to the client folder by typing cd client in the terminal, then type npm start to start the react app.
 
 ## Inspiration
 
