@@ -24,5 +24,6 @@ async function getAllItems() {
   return todos
 }
 
-
-export default { createItem, deleteItem, updateItem, getAllItems }
+const APIHelper = { createItem, deleteItem, updateItem, getAllItems }
+// export default { createItem, deleteItem, updateItem, getAllItems }
+export default APIHelper;
