@@ -24,3 +24,7 @@ Example of upgrades are:
 ## Inspiration
 
 This app was constructed in react but deployement has been inspired by the following blog post: https://www.freecodecamp.org/news/how-to-create-a-react-app-with-a-node-backend-the-complete-guide/
+
+## Note for deployment
+
+this app was deployed to Heroku and as such the build commands in the package.json in this version are correct. However, since Heroku canceled all free plans, the app was migrated to onrender. The deployment commands in onrender are different, and the build command in onrender should be: "npm install && npm run build && cd client && npm install && npm run build". By using this command, we can install the npm packages and build in the root file, before navigating to client and install the packages and build in the client folder. We can write this command either in package.json or in onrender. I chose to do it in onrender and override this command here.
