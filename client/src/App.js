@@ -1,9 +1,48 @@
 import React, { useState, useEffect } from "react"
-import "./App.css"
 import APIHelper from "./APIHelper.js"
+import { 
+  TextField , 
+  Button, 
+  Typography, 
+  Box,
+  ListItem,
+  ListItemText,
+  Container, 
+ } from '@mui/material';
 
 
-function App() {
+const styles = {
+  root:{
+    marginTop: "40px",
+  },
+  inputBox:{
+    marginTop: "30px",
+  },
+   input:{
+    width: " 100%",
+    marginBottom: "10px",
+    backgroundColor: "white",
+  },
+  button: {
+    margin: "20px 0",
+    float: "right",
+    width: "100%",
+  },
+  completed: {
+    textDecoration: "line-through",
+    opacity: 0.5,
+  },
+  deleteButton: {
+    color: "#fff",
+    backgroundColor: "#d9534f",
+    borderColor: "#d43f3a",
+    '&:hover': {
+      background: "#B6534F",
+    },
+  },
+};
+
+const App = () => {
 
   const [items, setItems] = useState([])
   const [item, setItem] = useState("")
@@ -18,14 +57,6 @@ function App() {
 
   const createItem = async e => {
     e.preventDefault()
-    // if (!item) {
-    //   alert("please enter something")
-    //   return
-    // }
-    // if (items.some(({ task }) => task === item)) {
-    //   alert(`Task: ${item} already exists`)
-    //   return
-    // }
     const newItem = await APIHelper.createItem(item)
     setItems([...items, newItem])
   }
@@ -53,38 +84,46 @@ function App() {
   }
   
   return (
-    <div className="App">
-      <header>
-        <h1>Shopping List</h1>
-      </header>
-      <div className="add-container">
-        <input
-          placeholder="Insert your item"
-          id="item-input"
-          type="text"
-          value={item}
-          onChange={({ target }) => setItem(target.value)}
-          onKeyPress={handleKeyPress}
-        />
-        <button type="button" className="addItem-button" onClick={createItem}>
-          Add
-        </button>
-      </div>
-      <div className="items-container">
-        <ul className="items-list">
-          {items.map(({ _id, itemName, completed }, i) => (
-            <li
-              key={i}
-              onClick={e => updateItem(e, _id)}
-              className={completed ? "completed" : ""}
-            >
-              {itemName} 
-              <button className='btn btn-danger delete-btn' onClick={e => deleteItem(e, _id)}>Delete </button>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </div>
+    <Container maxWidth="sm" sx={styles.root} >
+      <Typography variant="h4">Shopping List</Typography>
+      <Box style={styles.inputBox}>
+        <TextField 
+              id="item-input" 
+              label="Item" 
+              variant="outlined"  
+              placeholder="Insert your item"
+              type="text"
+              value={item}
+              onChange={({ target }) => setItem(target.value)}
+              onKeyPress={handleKeyPress}
+              sx={styles.input}
+
+            />
+        <Button type="submit" variant="contained" onClick={createItem} sx={styles.button}>Add</Button>
+      </Box>
+      <Box>
+        {items.map(({ _id, itemName, completed }, i) => (
+          <Box key={i}>
+            <ListItem 
+              alignItems="flex-start"
+              secondaryAction={
+              <Button 
+              color="error"
+              onClick={e => deleteItem(e, _id)}
+              sx={styles.deleteButton}>
+                Delete
+              </Button>
+            }>
+              <ListItemText
+                primary={itemName}
+                sx={completed ? styles.completed : ""}
+              />
+            </ListItem>
+          </Box>
+        ))}
+      </Box>
+    </Container>
   )
 }
-export default App
+
+export default App;
